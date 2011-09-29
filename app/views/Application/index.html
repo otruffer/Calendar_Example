@@ -1,0 +1,6 @@
+<H1> Hello World! <H2>
+
+#{list items:users, as:'user'}
+	<p><a href=@{Application.showCalendars(user.name)}>${user.name}</a></p>
+#{/list}
+

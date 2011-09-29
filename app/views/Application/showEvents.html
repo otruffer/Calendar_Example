@@ -1,0 +1,30 @@
+<H1> ${user.name}'s ${calendar.name}, upcoming Events<H2>
+#{if message}
+	<font color="red">${message}</font>
+#{/if}
+
+#{list items:events, as:'event'}
+	<p>
+		${event.name} from ${event.startDate.format('dd.MM.yy HH:mm')} to ${event.endDate.format('dd.MM.yy HH:mm')}
+	</p>
+#{/list}
+
+#{form @Application.addEvent()}
+    <p>
+        <label for="eventStart">Start Date (dd.MM.yyyy HH.mm): </label>
+        <input type="text" name="eventStart" id="eventStart" />
+    </p>
+        <p>
+        <label for="eventEnd">End Date (dd.MM.yyyy HH.mm): </label>
+        <input type="text" name="eventEnd" id="eventEnd" />
+    </p>
+    <p>
+        <label for="eventName">Name of the Event: </label>
+        <textarea name="eventName" id="eventName"></textarea>
+    </p>
+    	<input type="hidden" name="userName" id="userName" value="${user.name}" />
+    	<input type="hidden" name="calendarName" id="calendarName" value="${calendar.name}" />
+    <p>
+        <input type="submit" value="Submit your Event" />
+    </p>
+#{/form}
